@@ -2,10 +2,11 @@
 import { useState, useEffect } from 'react';
 import { signIn, getProviders, getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { FaGoogle } from 'react-icons/fa';
+import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 const icons = {
   google: <FaGoogle className="mr-2" />,
+  github: <FaGithub className="mr-2" />,
 };
 
 export function MdiHomeCircle(props) {
@@ -54,7 +55,7 @@ const LoginPage = () => {
             <button
               key={index}
               onClick={() => signIn(provider.id)}
-              className="flex items-center dark:text-white text-gray-800 bg-blue-100 dark:bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+              className="flex items-center dark:text-white text-gray-800 bg-blue-100 dark:bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 mb-4"
             >
               {icons[provider.id]}
               <span>Login or Register</span>

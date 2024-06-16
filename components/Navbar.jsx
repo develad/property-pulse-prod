@@ -6,10 +6,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/assets/images/logo-white.png';
 import profileDefault from '@/assets/images/profile.png';
-import { FaGoogle, FaUser, FaSignOutAlt, FaBookmark } from 'react-icons/fa';
+import {
+  FaGoogle,
+  FaGithub,
+  FaUser,
+  FaSignOutAlt,
+  FaBookmark,
+} from 'react-icons/fa';
 import ThemeSwitch from './ThemeSwitch';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import UnreadMessageCount from './UnreadMessageCount';
+
+const icons = {
+  google: <FaGoogle />,
+  github: <FaGithub />,
+};
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -114,16 +125,20 @@ const Navbar = () => {
           {/* <!-- Right Side Menu (Logged Out) --> */}
           {!session && (
             <div className="hidden md:block md:ml-6">
-              <div className="flex items-center">
+              <div className="flex items-center gap-4">
                 {providers &&
                   Object.values(providers).map((provider, index) => (
                     <button
                       key={index}
                       onClick={() => signIn(provider.id)}
-                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 group h-10"
                     >
-                      <FaGoogle className="text-white mr-2" />
-                      <span>Login or Register</span>
+                      <span className="group-hover:animate-bounce">
+                        {icons[provider.id]}
+                      </span>
+                      <span className="hidden group-hover:inline-block ml-2">
+                        Login or Register with {provider.name}
+                      </span>
                     </button>
                   ))}
               </div>
@@ -290,8 +305,8 @@ const Navbar = () => {
                   onClick={() => signIn(provider.id)}
                   className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
                 >
-                  <FaGoogle className="text-white mr-2" />
-                  <span>Login or Register</span>
+                  {icons[provider.id]}
+                  <span className="ml-2">Login or Register</span>
                 </button>
               ))}
           </div>
