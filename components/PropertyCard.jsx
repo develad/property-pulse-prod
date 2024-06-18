@@ -44,16 +44,15 @@ const PropertyCard = ({ property }) => {
         <div className="flex justify-center gap-4 text-gray-500 dark:text-white mb-4">
           <p>
             <FaBed className="inline mr-2 dark:text-blue-500" /> {property.beds}{' '}
-            <span className="hidden sm:inline">Beds</span>
+            <span>Beds</span>
           </p>
           <p>
             <FaBath className="inline mr-2 dark:text-blue-500" />{' '}
-            {property.baths} <span className="hidden sm:inline">Baths</span>
+            {property.baths} <span>Baths</span>
           </p>
           <p>
             <FaRulerCombined className="inline mr-2 dark:text-blue-500" />
-            {property.square_feet}{' '}
-            <span className="md:hidden lg:inline">sqft</span>
+            {property.square_feet} <span>sqft</span>
           </p>
         </div>
 
@@ -77,7 +76,7 @@ const PropertyCard = ({ property }) => {
 
         <div className="border border-gray-100 mb-5"></div>
 
-        <div className="flex flex-col lg:flex-row justify-between mb-4">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-2">
           <div className="flex align-middle gap-2 mb-4 lg:mb-0">
             <FaMapMarker className="text-orange-700 mt-1" />
             <span className="text-orange-700">

@@ -142,7 +142,7 @@ const Navbar = () => {
                       <span className="group-hover:animate-bounce">
                         {icons[provider.id]}
                       </span>
-                      <span className="hidden group-hover:inline-block ml-2">
+                      <span className="size-0 group-hover:size-auto group-hover:ml-2 overflow-hidden transition-all duration-300">
                         {provider.id === 'guest'
                           ? 'Login as a Guest'
                           : `Login or Register with ${provider.name}`}
@@ -305,26 +305,28 @@ const Navbar = () => {
               </Link>
             )}
 
-            {!session &&
-              providers &&
-              Object.values(providers).map((provider, index) => (
-                <button
-                  key={index}
-                  onClick={() => signIn(provider.id)}
-                  className={`flex items-center ${
-                    provider.id === 'guest'
-                      ? 'text-black bg-yellow-300'
-                      : 'text-white bg-gray-700'
-                  } hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
-                >
-                  {icons[provider.id]}
-                  <span className="ml-2">
-                    {provider.id === 'guest'
-                      ? 'Login as a Guest'
-                      : `Login or Register with ${provider.name}`}
-                  </span>
-                </button>
-              ))}
+            <div className="w-10/12 space-y-2">
+              {!session &&
+                providers &&
+                Object.values(providers).map((provider, index) => (
+                  <button
+                    key={index}
+                    onClick={() => signIn(provider.id)}
+                    className={`flex items-center ${
+                      provider.id === 'guest'
+                        ? 'text-black bg-yellow-300 justify-center'
+                        : 'text-white bg-gray-700'
+                    } hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 w-full`}
+                  >
+                    {icons[provider.id]}
+                    <span className="ml-2">
+                      {provider.id === 'guest'
+                        ? 'Login as a Guest'
+                        : `Login or Register with ${provider.name}`}
+                    </span>
+                  </button>
+                ))}
+            </div>
           </div>
         </div>
       )}

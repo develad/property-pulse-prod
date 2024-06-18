@@ -74,7 +74,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <section className="bg-blue-50 dark:bg-transparent min-h-[84vh]">
+    <section className="bg-blue-50 dark:bg-transparent flex-1">
       <div className="container max-w-5xl mx-auto md:py-24">
         <div className="bg-white dark:bg-slate-800 px-6 py-8 mb-4 shadow-xl rounded-xl m-4 md:m-0">
           <div className="flex flex-col md:flex-row">

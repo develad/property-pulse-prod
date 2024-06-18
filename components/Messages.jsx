@@ -30,9 +30,9 @@ const Messages = () => {
   return loading ? (
     <Spinner loading={loading} />
   ) : (
-    <section className="bg-blue-50 dark:bg-[#121212] text-black dark:text-white">
+    <section className="flex-1 bg-blue-50 dark:bg-[#121212] text-black dark:text-white">
       <div className="container m-auto xl:py-8 max-w-6xl">
-        <div className="bg-white dark:bg-slate-900 px-6 py-8 mb-4 shadow-md rounded-md m-4 md:m-0">
+        <div className="bg-white dark:dark:bg-[#1f2937] px-6 py-8 mb-4 shadow-md rounded-md m-4 md:m-0">
           <h1 className="text-3xl font-bold mb-4 flex items-end">
             Your Messages
             <FaMessage className="text-3xl mx-2 inline-block" />
