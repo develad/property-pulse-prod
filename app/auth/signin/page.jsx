@@ -2,11 +2,12 @@
 import { useState, useEffect } from 'react';
 import { signIn, getProviders, getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { FaGoogle, FaGithub } from 'react-icons/fa';
+import { FaGoogle, FaGithub, FaUser } from 'react-icons/fa';
 
 const icons = {
   google: <FaGoogle className="mr-2" />,
   github: <FaGithub className="mr-2" />,
+  guest: <FaUser className="mr-2" />,
 };
 
 export function MdiHomeCircle(props) {
@@ -50,17 +51,29 @@ const LoginPage = () => {
           <span className="block">Sign-In | Register</span>
         </p>
         <MdiHomeCircle className="w-12 h-12 mb-8 fill-gray-800 dark:fill-white" />
-        {providers &&
-          Object.values(providers).map((provider, index) => (
-            <button
-              key={index}
-              onClick={() => signIn(provider.id)}
-              className="flex items-center dark:text-white text-gray-800 bg-blue-100 dark:bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 mb-4"
-            >
-              {icons[provider.id]}
-              <span>Login or Register</span>
-            </button>
-          ))}
+        <div>
+          {providers &&
+            Object.values(providers).map((provider, index) => (
+              <button
+                key={index}
+                onClick={() => signIn(provider.id)}
+                className={`flex items-center
+                ${
+                  provider.id === 'guest'
+                    ? 'dark:text-black text-black bg-yellow-300 dark:bg-yellow-300'
+                    : 'dark:text-white text-gray-800 bg-blue-100 dark:bg-gray-700'
+                }
+                 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 mb-4 w-full justify-center`}
+              >
+                {icons[provider.id]}
+                <span>
+                  {provider.id === 'guest'
+                    ? 'Login as a Guest'
+                    : `Login or Register with ${provider.name}`}
+                </span>
+              </button>
+            ))}
+        </div>
       </div>
     );
   }

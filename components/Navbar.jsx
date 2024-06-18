@@ -20,6 +20,7 @@ import UnreadMessageCount from './UnreadMessageCount';
 const icons = {
   google: <FaGoogle />,
   github: <FaGithub />,
+  guest: <FaUser />,
 };
 
 const Navbar = () => {
@@ -131,13 +132,20 @@ const Navbar = () => {
                     <button
                       key={index}
                       onClick={() => signIn(provider.id)}
-                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 group h-10"
+                      className={`flex items-center ${
+                        provider.id === 'guest'
+                          ? 'text-black bg-yellow-300'
+                          : 'text-white bg-gray-700'
+                      }
+                       hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 group h-10`}
                     >
                       <span className="group-hover:animate-bounce">
                         {icons[provider.id]}
                       </span>
                       <span className="hidden group-hover:inline-block ml-2">
-                        Login or Register with {provider.name}
+                        {provider.id === 'guest'
+                          ? 'Login as a Guest'
+                          : `Login or Register with ${provider.name}`}
                       </span>
                     </button>
                   ))}
@@ -303,10 +311,18 @@ const Navbar = () => {
                 <button
                   key={index}
                   onClick={() => signIn(provider.id)}
-                  className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className={`flex items-center ${
+                    provider.id === 'guest'
+                      ? 'text-black bg-yellow-300'
+                      : 'text-white bg-gray-700'
+                  } hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   {icons[provider.id]}
-                  <span className="ml-2">Login or Register</span>
+                  <span className="ml-2">
+                    {provider.id === 'guest'
+                      ? 'Login as a Guest'
+                      : `Login or Register with ${provider.name}`}
+                  </span>
                 </button>
               ))}
           </div>

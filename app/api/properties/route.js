@@ -15,7 +15,10 @@ const GET = async (request) => {
 
     const totalProperties = await Property.countDocuments({});
 
-    const properties = await Property.find({}).skip(skip).limit(pageSize);
+    const properties = await Property.find({})
+      .sort({ createdAt: 'desc' })
+      .skip(skip)
+      .limit(pageSize);
 
     const result = {
       total: totalProperties,
